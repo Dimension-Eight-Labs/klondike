@@ -4,7 +4,6 @@
 <meta charset="utf-8">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Solitaire">
 <meta name="theme-color" content="#0d382a">
 <link rel="manifest" href="manifest.webmanifest">
@@ -74,12 +73,12 @@ body{height:100%;margin:0;background:radial-gradient(ellipse 120% 90% at 50% 25%
 .right{display:flex;align-items:center;gap:8px;margin-left:auto}
 #bGear{padding:8px!important;display:grid;place-items:center}
 #bGear svg{width:20px;height:20px;display:block}
-/* iOS 27 paints a blur band over the top of installed web apps. A solid fixed strip at the very top
-   of the screen stops it. Shown only in the installed iOS app; matches the table edge color. */
+/* iOS 27 blurs anything under a translucent status bar, so the installed app now uses a solid bar
+   (no black-translucent meta). iOS colors that bar from a solid element at the very top of the page. */
 #topfix{display:none}
-@media (display-mode: standalone){@supports (-webkit-touch-callout: none){
-  #topfix{display:block;position:fixed;top:0;left:0;right:0;height:max(12px, env(safe-area-inset-top,0px));background:var(--felt-deep);pointer-events:none;z-index:9500}
-}}
+@media (display-mode: standalone){
+  #topfix{display:block;position:fixed;top:0;left:0;right:0;height:12px;background:var(--felt-deep);pointer-events:none;z-index:0}
+}
 #bar{display:flex;align-items:center;justify-content:space-between;gap:6px;padding-block:10px 12px;flex-wrap:nowrap}
 #bar button,#sheet button{font:600 15px/1 var(--font-ui);color:var(--bar-fg);background:var(--btn);border:1px solid var(--felt-line);border-radius:999px;padding:10px 13px;cursor:pointer;white-space:nowrap}
 #bar button:disabled,#sheet button:disabled{opacity:.4}
